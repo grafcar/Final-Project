@@ -212,11 +212,11 @@ class Account {
 double applyDiscount(DeliveryOrder *d, Account const &a){
 
         if(a.getStatus() == "Owner"){
-            return 0.1;
+            return 0.1*d->getBalance();
         }else if(a.getStatus() == "VIP"){
-            return d->VIPdiscount();
+            return d->VIPdiscount()*d->getBalance();
         }else{
-            return 1;
+            return d->getBalance();
         }
 
     }
@@ -250,7 +250,7 @@ int main(){
 
     kevinDrink.printReceipt();
     cout << "Balance: $" << kevinDrink.getBalance() << endl;
-    cout << "Discounted Balance: $" << kevinDrink.getBalance()*(applyDiscount(p,Kevin)) << "\n" << endl;
+    cout << "Discounted Balance: $" << applyDiscount(p,Kevin) << "\n" << endl;
     cout << "Stuart placing order.\n" << endl;
 
     FoodOrder stuartFood("Stuart",3,2,2021,"123-456-1111",25.5,"Trauts Steak House");
@@ -268,7 +268,14 @@ int main(){
     stuartFood.printReceipt();
     cout << "Balance: $" << stuartFood.getBalance() << endl;
     cout << "Discounted Balance: $" << applyDiscount(s,Stuart) << "\n" << endl;
-
+    cout << "Bob decided to log in to his account and see whether he can afford ordering the same order as Stuart.\n";
+    
+    stuartFood.printReceipt();
+    cout << "Balance: $" << stuartFood.getBalance() << endl;
+    cout << "Discounted Balance: $" << applyDiscount(s,Bob) << "\n" << endl;
+    cout << "Bob upset, cancelling order :(\n\n";
+    
+    cout << "Total order place: " << DeliveryOrder::getOrderCount() << endl;
     
 
     return 0;

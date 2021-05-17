@@ -145,6 +145,7 @@ class FoodOrder : public DeliveryOrder {
     }
     
     void printReceipt() const{
+        DeliveryOrder::printReceipt();
         cout << "\tOrdered Foods: " << foodCount << endl;
     }
 
@@ -272,9 +273,8 @@ int main(){
     
     stuartFood.printReceipt();
     cout << "Balance: $" << stuartFood.getBalance() << endl;
-    cout << "Discounted Balance: $" << applyDiscount(s,Bob) << "\n" << endl;
+    cout << "Discounted Balance: $" << applyDiscount(s,Bob) << endl;
     cout << "Bob upset, cancelling order :(\n\n";
-    
     cout << "Total order place: " << DeliveryOrder::getOrderCount() << endl;
     
 
